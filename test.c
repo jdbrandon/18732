@@ -6,7 +6,7 @@ char shellcode[] =
 
 int main()
 {
-     int *ret;
-     ret = ((int *)&ret) + 2;
-     (*ret) = (int)shellcode;
+     long *ret;
+     ret = (long *) &ret + 2;
+     (*ret) = (long)shellcode;
 }
