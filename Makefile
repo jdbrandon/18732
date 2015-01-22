@@ -11,4 +11,4 @@ client3: client3.o
 ascii2hex: ascii2hex.o
 	$(CC) -o ascii2hex ascii2hex.c
 clean:
-	rm *.o $(TARGS)
+	rm -rf *.o $(TARGS)
