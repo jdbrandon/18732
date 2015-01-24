@@ -1,1 +1,2 @@
 1. For the shellcode, have to change last call address to be 2 bytes less
+2. Have to make vulnerable exe's stack executable using 'execstack -s <executable>'
