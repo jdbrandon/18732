@@ -11,6 +11,6 @@ client3: client3.o
 ascii2hex: ascii2hex.o
 	$(CC) -o ascii2hex ascii2hex.c
 test: test.o
-	$(CC) -m32 -fno-stack-protector -o test test.o
+	$(CC) -m32 -fno-stack-protector -o test test.c
 clean:
 	rm -rf *.o $(TARGS)
