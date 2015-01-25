@@ -51,12 +51,11 @@ int main(int argc, char** argv)
 		"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 		"AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 		"AAAAAAAAAAAAAA";
-
 	int PORTNUM;
 	char SERVER_IP[16];
     
 	int sock, nbytes, i, total, s;
-	char request[1000];
+	char request[2000];
 	char recvline[1000];
 	struct sockaddr_in srv;
  
@@ -107,7 +106,7 @@ int main(int argc, char** argv)
 	printf("The request is:\n%s\n", reqstring); 
 
 	/* Make the request */
-	strncpy(request, reqstring,1000 ); 
+	strncpy(request, reqstring,2000 ); 
 	total = 0;
 	s = strlen(request);
 	while( total < s){
@@ -127,4 +126,3 @@ int main(int argc, char** argv)
 
 	return(0);
 }
-
