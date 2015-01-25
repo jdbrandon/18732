@@ -1,28 +1,6 @@
 Section   .text
      global _start
 
-;_start:
-;     jmp short GotoCall
-;shellcode:
-;     pop esi
-;     xor eax, eax
-;     mov byte [esi + 7], al
-;     mov byte [esi + 10], al
-;     mov byte [esi + 23], al
-;     mov byte [esi + 24], al
-;     lea ebx, [esi]
-;     mov long [esi + 25], ebx
-;     mov long [esi + 29], eax
-;     mov byte al, 0x0b
-;     mov ebx, esi
-;     lea ecx, [esi + 25]
-;     lea edx, [esi + 29]
-;     int 0x80
-;
-;GotoCall:
-;     Call shellcode
-;     db '/bin/shJ-cJ"echo Hello"JJAAAAKKKK'
-
 _start:
      jmp short arg3
 align 4
@@ -35,26 +13,30 @@ shellcode:
      mov long [esi + 12], eax
      mov byte al, 0x0b
      mov ebx, esi
-     ;lea ecx, [esi + 8]
      lea ecx, [esp - 4]
      lea edx, [esi + 12]
      int 0x80
-arg3:
-     xor eax, eax
-     sub long esp, 0x4
-     mov long [esp], eax
-arg2:
-     Call arg1
-     db 'echo "You lose!" > foo.txtJ'
-arg1:
-     pop esi
-     push esi
-     mov byte [esi + 26], al
-     Call arg0
-     db '-cJ'
+
+align 4
 arg0:
      pop esi
      push esi
      mov byte [esi + 2], al
      Call shellcode
      db '/bin/shJAAAAKKKK'
+align 4
+arg1:
+     pop esi
+     push esi
+     mov byte [esi + 26], al
+     Call arg0
+     db '-cJ'
+align 4
+arg3:
+     xor eax, eax
+     sub long esp, 0x4
+     mov long [esp], eax
+align 4
+arg2:
+     Call arg1
+     db 'echo "You lose!" > foo.txtJ'
