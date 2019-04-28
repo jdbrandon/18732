@@ -1,0 +1,20 @@
+105,110c105,116
+<  eb 27                	jmp    8048db5 <validatebuf+0x17b> ******************************************
+<  8b 55 08             	mov    0x8(%ebp),%edx
+<  8b 45 0c             	mov    0xc(%ebp),%eax
+<  01 d0                	add    %edx,%eax
+<  89 c2                	mov    %eax,%edx
+<  8b 45 ec             	mov    -0x14(%ebp),%eax
+---
+>  eb 37                	jmp    8048e45 <validatebuf+0x18b> *******************************************
+>  8b 55 f0             	mov    -0x10(%ebp),%edx
+>  8b 45 f4             	mov    -0xc(%ebp),%eax
+>  29 c2                	sub    %eax,%edx
+>  89 d0                	mov    %edx,%eax
+>  83 e8 04             	sub    $0x4,%eax
+>  83 f8 0a             	cmp    $0xa,%eax
+>  7e 07                	jle    8048e27 <validatebuf+0x16d>
+>  b8 00 00 00 00       	mov    $0x0,%eax
+>  eb 1e                	jmp    8048e45 <validatebuf+0x18b>
+>  8b 55 ec             	mov    -0x14(%ebp),%edx
+>  8b 45 f0             	mov    -0x10(%ebp),%eax

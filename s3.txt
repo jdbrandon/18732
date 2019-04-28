@@ -1,0 +1,279 @@
+08048cba <validatebuf>:
+ 55                   	push   %ebp
+ 89 e5                	mov    %esp,%ebp
+ 83 ec 38             	sub    $0x38,%esp
+ 83 7d 08 12          	cmpl   $0x12,0x8(%ebp)
+ 7f 0a                	jg     8048cd0 <validatebuf+0x16>
+ b8 00 00 00 00       	mov    $0x0,%eax
+ e9 75 01 00 00       	jmp    8048e45 <validatebuf+0x18b>
+ 8b 55 08             	mov    0x8(%ebp),%edx
+ 8b 45 0c             	mov    0xc(%ebp),%eax
+ 01 d0                	add    %edx,%eax
+ c6 00 00             	movb   $0x0,(%eax)
+ c7 44 24 08 04 00 00 	movl   $0x4,0x8(%esp)
+ 00 
+ c7 44 24 04 b1 9a 04 	movl   $0x8049ab1,0x4(%esp)
+ 08 
+ 8b 45 0c             	mov    0xc(%ebp),%eax
+ 89 04 24             	mov    %eax,(%esp)
+ e8 12 fd ff ff       	call   8048a08 <strncmp@plt>
+ 85 c0                	test   %eax,%eax
+ 74 0a                	je     8048d04 <validatebuf+0x4a>
+ b8 00 00 00 00       	mov    $0x0,%eax
+ e9 41 01 00 00       	jmp    8048e45 <validatebuf+0x18b>
+ c7 44 24 04 b6 9a 04 	movl   $0x8049ab6,0x4(%esp)
+ 08 
+ 8b 45 0c             	mov    0xc(%ebp),%eax
+ 89 04 24             	mov    %eax,(%esp)
+ e8 91 fc ff ff       	call   80489a8 <strstr@plt>
+ 89 45 f4             	mov    %eax,-0xc(%ebp)
+ c7 44 24 04 bc 9a 04 	movl   $0x8049abc,0x4(%esp)
+ 08 
+ 8b 45 0c             	mov    0xc(%ebp),%eax
+ 89 04 24             	mov    %eax,(%esp)
+ e8 7b fc ff ff       	call   80489a8 <strstr@plt>
+ 89 45 f0             	mov    %eax,-0x10(%ebp)
+ c7 44 24 04 c2 9a 04 	movl   $0x8049ac2,0x4(%esp)
+ 08 
+ 8b 45 0c             	mov    0xc(%ebp),%eax
+ 89 04 24             	mov    %eax,(%esp)
+ e8 65 fc ff ff       	call   80489a8 <strstr@plt>
+ 89 45 ec             	mov    %eax,-0x14(%ebp)
+ 83 7d f4 00          	cmpl   $0x0,-0xc(%ebp)
+ 74 0c                	je     8048d58 <validatebuf+0x9e>
+ 83 7d f0 00          	cmpl   $0x0,-0x10(%ebp)
+ 74 06                	je     8048d58 <validatebuf+0x9e>
+ 83 7d ec 00          	cmpl   $0x0,-0x14(%ebp)
+ 75 0a                	jne    8048d62 <validatebuf+0xa8>
+ b8 00 00 00 00       	mov    $0x0,%eax
+ e9 e3 00 00 00       	jmp    8048e45 <validatebuf+0x18b>
+ 8b 45 f0             	mov    -0x10(%ebp),%eax
+ 3b 45 f4             	cmp    -0xc(%ebp),%eax
+ 76 08                	jbe    8048d72 <validatebuf+0xb8>
+ 8b 45 ec             	mov    -0x14(%ebp),%eax
+ 3b 45 f0             	cmp    -0x10(%ebp),%eax
+ 77 0a                	ja     8048d7c <validatebuf+0xc2>
+ b8 00 00 00 00       	mov    $0x0,%eax
+ e9 c9 00 00 00       	jmp    8048e45 <validatebuf+0x18b>
+ 8b 45 f4             	mov    -0xc(%ebp),%eax
+ 83 e8 04             	sub    $0x4,%eax
+ 89 c2                	mov    %eax,%edx
+ 8b 45 0c             	mov    0xc(%ebp),%eax
+ 29 c2                	sub    %eax,%edx
+ 89 d0                	mov    %edx,%eax
+ 83 f8 32             	cmp    $0x32,%eax
+ 7e 0a                	jle    8048d9a <validatebuf+0xe0>
+ b8 00 00 00 00       	mov    $0x0,%eax
+ e9 ab 00 00 00       	jmp    8048e45 <validatebuf+0x18b>
+ 8b 45 f4             	mov    -0xc(%ebp),%eax
+ 83 c0 05             	add    $0x5,%eax
+ 89 04 24             	mov    %eax,(%esp)
+ e8 b0 fb ff ff       	call   8048958 <atof@plt>
+ d9 5d e8             	fstps  -0x18(%ebp)
+ d9 45 e8             	flds   -0x18(%ebp)
+ d9 05 c4 9b 04 08    	flds   0x8049bc4
+ d9 c9                	fxch   %st(1)
+ df e9                	fucomip %st(1),%st
+ dd d8                	fstp   %st(0)
+ 77 11                	ja     8048dcd <validatebuf+0x113>
+ d9 05 c8 9b 04 08    	flds   0x8049bc8
+ d9 45 e8             	flds   -0x18(%ebp)
+ d9 c9                	fxch   %st(1)
+ df e9                	fucomip %st(1),%st
+ dd d8                	fstp   %st(0)
+ 76 07                	jbe    8048dd4 <validatebuf+0x11a>
+ b8 00 00 00 00       	mov    $0x0,%eax
+ eb 71                	jmp    8048e45 <validatebuf+0x18b>
+ 8b 45 f0             	mov    -0x10(%ebp),%eax
+ 83 c0 05             	add    $0x5,%eax
+ 89 04 24             	mov    %eax,(%esp)
+ e8 76 fb ff ff       	call   8048958 <atof@plt>
+ d9 5d e4             	fstps  -0x1c(%ebp)
+ d9 45 e4             	flds   -0x1c(%ebp)
+ d9 05 cc 9b 04 08    	flds   0x8049bcc
+ d9 c9                	fxch   %st(1)
+ df e9                	fucomip %st(1),%st
+ dd d8                	fstp   %st(0)
+ 77 11                	ja     8048e07 <validatebuf+0x14d>
+ d9 05 d0 9b 04 08    	flds   0x8049bd0
+ d9 45 e4             	flds   -0x1c(%ebp)
+ d9 c9                	fxch   %st(1)
+ df e9                	fucomip %st(1),%st
+ dd d8                	fstp   %st(0)
+ 76 07                	jbe    8048e0e <validatebuf+0x154>
+ b8 00 00 00 00       	mov    $0x0,%eax
+ eb 37                	jmp    8048e45 <validatebuf+0x18b> //BEGIN
+ 8b 55 f0             	mov    -0x10(%ebp),%edx
+ 8b 45 f4             	mov    -0xc(%ebp),%eax
+ 29 c2                	sub    %eax,%edx
+ 89 d0                	mov    %edx,%eax
+ 83 e8 04             	sub    $0x4,%eax
+ 83 f8 0a             	cmp    $0xa,%eax
+ 7e 07                	jle    8048e27 <validatebuf+0x16d>
+ b8 00 00 00 00       	mov    $0x0,%eax
+ eb 1e                	jmp    8048e45 <validatebuf+0x18b>
+ 8b 55 ec             	mov    -0x14(%ebp),%edx
+ 8b 45 f0             	mov    -0x10(%ebp),%eax
+ 29 c2                	sub    %eax,%edx
+ 89 d0                	mov    %edx,%eax
+ 83 e8 04             	sub    $0x4,%eax
+ 83 f8 0a             	cmp    $0xa,%eax //END HERE
+ 7e 07                	jle    8048e40 <validatebuf+0x186>
+ b8 00 00 00 00       	mov    $0x0,%eax
+ eb 05                	jmp    8048e45 <validatebuf+0x18b>
+ b8 01 00 00 00       	mov    $0x1,%eax
+ c9                   	leave  
+ c3                   	ret    
+
+08048e47 <processbuf>:
+ 55                   	push   %ebp
+ 89 e5                	mov    %esp,%ebp
+ 81 ec 58 03 00 00    	sub    $0x358,%esp
+ 8b 55 08             	mov    0x8(%ebp),%edx
+ 8b 45 0c             	mov    0xc(%ebp),%eax
+ 01 d0                	add    %edx,%eax
+ c6 00 00             	movb   $0x0,(%eax)
+ c7 85 bc fc ff ff 04 	movl   $0x4,-0x344(%ebp)
+ 00 00 00 
+ c7 85 c0 fc ff ff 00 	movl   $0x0,-0x340(%ebp)
+ 00 00 00 
+ eb 3b                	jmp    8048eac <processbuf+0x65>
+ 8b 85 c0 fc ff ff    	mov    -0x340(%ebp),%eax
+ 8b 95 bc fc ff ff    	mov    -0x344(%ebp),%edx
+ 89 d1                	mov    %edx,%ecx
+ 8b 55 0c             	mov    0xc(%ebp),%edx
+ 01 ca                	add    %ecx,%edx
+ 0f b6 12             	movzbl (%edx),%edx
+ 88 94 05 c4 fc ff ff 	mov    %dl,-0x33c(%ebp,%eax,1)
+ 8b 85 bc fc ff ff    	mov    -0x344(%ebp),%eax
+ 83 c0 01             	add    $0x1,%eax
+ 89 85 bc fc ff ff    	mov    %eax,-0x344(%ebp)
+ 8b 85 c0 fc ff ff    	mov    -0x340(%ebp),%eax
+ 83 c0 01             	add    $0x1,%eax
+ 89 85 c0 fc ff ff    	mov    %eax,-0x340(%ebp)
+ 8b 85 bc fc ff ff    	mov    -0x344(%ebp),%eax
+ 89 c2                	mov    %eax,%edx
+ 8b 45 0c             	mov    0xc(%ebp),%eax
+ 01 d0                	add    %edx,%eax
+ 0f b6 00             	movzbl (%eax),%eax
+ 3c 3b                	cmp    $0x3b,%al
+ 75 b1                	jne    8048e71 <processbuf+0x2a>
+ 8b 85 bc fc ff ff    	mov    -0x344(%ebp),%eax
+ 89 c2                	mov    %eax,%edx
+ 8b 45 0c             	mov    0xc(%ebp),%eax
+ 01 d0                	add    %edx,%eax
+ c6 00 00             	movb   $0x0,(%eax)
+ 8b 85 bc fc ff ff    	mov    -0x344(%ebp),%eax
+ 83 c0 05             	add    $0x5,%eax
+ 89 85 bc fc ff ff    	mov    %eax,-0x344(%ebp)
+ c7 85 c0 fc ff ff 00 	movl   $0x0,-0x340(%ebp)
+ 00 00 00 
+ eb 3b                	jmp    8048f26 <processbuf+0xdf>
+ 8b 85 c0 fc ff ff    	mov    -0x340(%ebp),%eax
+ 8b 95 bc fc ff ff    	mov    -0x344(%ebp),%edx
+ 89 d1                	mov    %edx,%ecx
+ 8b 55 0c             	mov    0xc(%ebp),%edx
+ 01 ca                	add    %ecx,%edx
+ 0f b6 12             	movzbl (%edx),%edx
+ 88 94 05 f6 fc ff ff 	mov    %dl,-0x30a(%ebp,%eax,1)
+ 8b 85 bc fc ff ff    	mov    -0x344(%ebp),%eax
+ 83 c0 01             	add    $0x1,%eax
+ 89 85 bc fc ff ff    	mov    %eax,-0x344(%ebp)
+ 8b 85 c0 fc ff ff    	mov    -0x340(%ebp),%eax
+ 83 c0 01             	add    $0x1,%eax
+ 89 85 c0 fc ff ff    	mov    %eax,-0x340(%ebp)
+ 8b 85 bc fc ff ff    	mov    -0x344(%ebp),%eax
+ 89 c2                	mov    %eax,%edx
+ 8b 45 0c             	mov    0xc(%ebp),%eax
+ 01 d0                	add    %edx,%eax
+ 0f b6 00             	movzbl (%eax),%eax
+ 3c 3b                	cmp    $0x3b,%al
+ 75 b1                	jne    8048eeb <processbuf+0xa4>
+ 8b 85 bc fc ff ff    	mov    -0x344(%ebp),%eax
+ 89 c2                	mov    %eax,%edx
+ 8b 45 0c             	mov    0xc(%ebp),%eax
+ 01 d0                	add    %edx,%eax
+ c6 00 00             	movb   $0x0,(%eax)
+ 8b 85 bc fc ff ff    	mov    -0x344(%ebp),%eax
+ 83 c0 05             	add    $0x5,%eax
+ 89 85 bc fc ff ff    	mov    %eax,-0x344(%ebp)
+ c7 85 c0 fc ff ff 00 	movl   $0x0,-0x340(%ebp)
+ 00 00 00 
+ eb 3b                	jmp    8048fa0 <processbuf+0x159>
+ 8b 85 c0 fc ff ff    	mov    -0x340(%ebp),%eax
+ 8b 95 bc fc ff ff    	mov    -0x344(%ebp),%edx
+ 89 d1                	mov    %edx,%ecx
+ 8b 55 0c             	mov    0xc(%ebp),%edx
+ 01 ca                	add    %ecx,%edx
+ 0f b6 12             	movzbl (%edx),%edx
+ 88 94 05 00 fd ff ff 	mov    %dl,-0x300(%ebp,%eax,1)
+ 8b 85 bc fc ff ff    	mov    -0x344(%ebp),%eax
+ 83 c0 01             	add    $0x1,%eax
+ 89 85 bc fc ff ff    	mov    %eax,-0x344(%ebp)
+ 8b 85 c0 fc ff ff    	mov    -0x340(%ebp),%eax
+ 83 c0 01             	add    $0x1,%eax
+ 89 85 c0 fc ff ff    	mov    %eax,-0x340(%ebp)
+ 8b 85 bc fc ff ff    	mov    -0x344(%ebp),%eax
+ 89 c2                	mov    %eax,%edx
+ 8b 45 0c             	mov    0xc(%ebp),%eax
+ 01 d0                	add    %edx,%eax
+ 0f b6 00             	movzbl (%eax),%eax
+ 3c 3b                	cmp    $0x3b,%al
+ 75 b1                	jne    8048f65 <processbuf+0x11e>
+ 8b 85 bc fc ff ff    	mov    -0x344(%ebp),%eax
+ 89 c2                	mov    %eax,%edx
+ 8b 45 0c             	mov    0xc(%ebp),%eax
+ 01 d0                	add    %edx,%eax
+ c6 00 00             	movb   $0x0,(%eax)
+ 8b 85 bc fc ff ff    	mov    -0x344(%ebp),%eax
+ 83 c0 05             	add    $0x5,%eax
+ 89 85 bc fc ff ff    	mov    %eax,-0x344(%ebp)
+ 8b 85 bc fc ff ff    	mov    -0x344(%ebp),%eax
+ 89 c2                	mov    %eax,%edx
+ 8b 45 0c             	mov    0xc(%ebp),%eax
+ 01 d0                	add    %edx,%eax
+ 89 44 24 04          	mov    %eax,0x4(%esp)
+ 8d 85 c4 fc ff ff    	lea    -0x33c(%ebp),%eax
+ 83 c0 46             	add    $0x46,%eax
+ 89 04 24             	mov    %eax,(%esp)
+ e8 33 f9 ff ff       	call   8048928 <strcpy@plt>
+ 8d 85 c4 fc ff ff    	lea    -0x33c(%ebp),%eax
+ 89 04 24             	mov    %eax,(%esp)
+ e8 4d fc ff ff       	call   8048c50 <store_gt>
+ 8d 85 c4 fc ff ff    	lea    -0x33c(%ebp),%eax
+ 89 44 24 08          	mov    %eax,0x8(%esp)
+ c7 44 24 04 c8 9a 04 	movl   $0x8049ac8,0x4(%esp)
+ 08 
+ 8d 45 c6             	lea    -0x3a(%ebp),%eax
+ 89 04 24             	mov    %eax,(%esp)
+ e8 f8 f7 ff ff       	call   8048818 <sprintf@plt>
+ 8d 45 c6             	lea    -0x3a(%ebp),%eax
+ 89 04 24             	mov    %eax,(%esp)
+ e8 dd f8 ff ff       	call   8048908 <strlen@plt>
+ 89 44 24 08          	mov    %eax,0x8(%esp)
+ 8d 45 c6             	lea    -0x3a(%ebp),%eax
+ 89 44 24 04          	mov    %eax,0x4(%esp)
+ 8b 45 10             	mov    0x10(%ebp),%eax
+ 89 04 24             	mov    %eax,(%esp)
+ e8 37 f8 ff ff       	call   8048878 <write@plt>
+ 89 85 bc fc ff ff    	mov    %eax,-0x344(%ebp)
+ 8d 45 c6             	lea    -0x3a(%ebp),%eax
+ 89 04 24             	mov    %eax,(%esp)
+ e8 b6 f8 ff ff       	call   8048908 <strlen@plt>
+ 89 c2                	mov    %eax,%edx
+ 8b 85 bc fc ff ff    	mov    -0x344(%ebp),%eax
+ 89 54 24 08          	mov    %edx,0x8(%esp)
+ 89 44 24 04          	mov    %eax,0x4(%esp)
+ 8d 85 fe fe ff ff    	lea    -0x102(%ebp),%eax
+ 89 04 24             	mov    %eax,(%esp)
+ e8 66 fb ff ff       	call   8048bd6 <check_error>
+ 89 85 bc fc ff ff    	mov    %eax,-0x344(%ebp)
+ 8b 85 bc fc ff ff    	mov    -0x344(%ebp),%eax
+ 83 f8 01             	cmp    $0x1,%eax
+ 75 0e                	jne    804908f <processbuf+0x248>
+ 8d 85 fe fe ff ff    	lea    -0x102(%ebp),%eax
+ 89 04 24             	mov    %eax,(%esp)
+ e8 a9 f8 ff ff       	call   8048938 <printf@plt>
+ 8b 85 bc fc ff ff    	mov    -0x344(%ebp),%eax
+ c9                   	leave  
+ c3                   	ret    
